@@ -1,5 +1,6 @@
 # Connection scanner
 
+Debian-like OSs only. \
 Shows current connections and checks which Organization the IP addresses belong to.\
 Also counting connections per Organization. \
 Run script through `SUDO` and with argument as a searching item.
