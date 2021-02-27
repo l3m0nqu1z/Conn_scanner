@@ -1,8 +1,8 @@
 #!/bin/bash
 SCRIPTNAME=`basename "$0"`
-if [ "$1" = "" ] || [ "$#" -gt 1 ]
+if [ "$1" = "" ] || [ "$#" -gt 1 ] || [ "$EUID" -ne 0 ]
 then
-   echo "(!) Aborting... please enter searching item as an argument e.g."
+   echo "(!) Aborting... please run the script with SUDO and searching item as an argument e.g."
    echo "    sudo ./$SCRIPTNAME firefox -----> PROCESS NAME"
    echo "    sudo ./$SCRIPTNAME 3123 --------> PID"
    echo "    sudo ./$SCRIPTNAME ESTAB -------> STATE ( ESTAB | LISTEN | UNCONN )"
