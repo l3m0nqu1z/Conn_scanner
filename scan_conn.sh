@@ -35,12 +35,15 @@ fi
 TMP=$(date +"%H%M%S".ss)
 TMPPATH=/tmp/$TMP
 NUM_RES="5"
+
 search_process() {
 awk '{print $6"\t"$7"\t"$1"\t"$2}' | grep "users:.*$1" | awk '{print $1}'
 }
+
 sorting() {
 cut -d: -f 1 | sort | uniq -c | sort | awk '{print $2}' | tac
 }
+
 results() {
 head -n $1 $TMPPATH | while read IP
 do
@@ -56,6 +59,7 @@ then
    > $TMPPATH.org
 fi
 }
+
 more_results() {
 echo -n "To see more results press 'l' or any other key to exit: "
 read more_results
@@ -70,13 +74,17 @@ case $more_results in
    ;;
 esac
 }
+
 cleanup() {
 rm -rf /tmp/*.ss*
 }
+
 no_results() {
 LENGTH=$(cat $TMPPATH)
 [ -z "$LENGTH" ] && echo "No results"
 }
+
+#Script's working steps
 ss -tunap | search_process $1 | sorting > $TMPPATH
 results $NUM_RES
 NUM_RES_ALL=$(wc -w $TMPPATH | cut -d' ' -f1)
