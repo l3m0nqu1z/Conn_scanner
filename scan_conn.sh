@@ -36,7 +36,7 @@ TMP=$(date +"%H%M%S".ss)
 TMPPATH=/tmp/$TMP
 NUM_RES="5"
 search_process() {
-grep "$1" | awk '{print $6}'
+awk '{print $6"\t"$7"\t"$1"\t"$2}' | grep "users:.*$1" | awk '{print $1}'
 }
 sorting() {
 cut -d: -f 1 | sort | uniq -c | sort | awk '{print $2}' | tac
