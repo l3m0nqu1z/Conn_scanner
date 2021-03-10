@@ -1,12 +1,12 @@
 #!/bin/bash
 SCRIPTNAME=`basename "$0"`
-if [ "$1" = "" ] || [ "$#" -gt 1 ] || [ "$EUID" -ne 0 ]
+if [ "$1" = "" ] || [ "$#" -gt 1 ]
 then
-   echo "(!) Aborting... please run the script with SUDO and searching item as an argument e.g."
-   echo "    sudo ./$SCRIPTNAME firefox -----> PROCESS NAME"
-   echo "    sudo ./$SCRIPTNAME 3123 --------> PID"
-   echo "    sudo ./$SCRIPTNAME ESTAB -------> STATE ( ESTAB | LISTEN | UNCONN )"
-   echo "    sudo ./$SCRIPTNAME tcp ---------> Netid ( tcp | udp )"
+   echo "(!) Aborting... please run the script with an argument as a searching item e.g."
+   echo "    ./$SCRIPTNAME firefox -----> PROCESS NAME"
+   echo "    ./$SCRIPTNAME 3123 --------> PID"
+   echo "    ./$SCRIPTNAME ESTAB -------> STATE ( ESTAB | LISTEN | UNCONN )"
+   echo "    ./$SCRIPTNAME tcp ---------> Netid ( tcp | udp )"
    exit 1
 else
    PROCESS=$1
@@ -20,8 +20,8 @@ then
    case $answer in
       Y|y|Yes|yes|"")
         echo "Installing components..."
-        apt update -y >> /dev/null 2>&1
-        apt install -y ss-dev \
+        sudo apt update -y >> /dev/null 2>&1
+        sudo apt install -y ss-dev \
                        whois >> /dev/null 2>&1
         echo "Done. Now script is working..."
         sleep 1
