@@ -70,6 +70,9 @@ case $more_results in
    ;;
 esac
 }
+cleanup() {
+rm -rf /tmp/*.ss*
+}
 no_results() {
 LENGTH=$(cat $TMPPATH)
 [ -z "$LENGTH" ] && echo "No results"
@@ -82,4 +85,4 @@ do
 more_results
 done
 no_results
-rm -rf /tmp/*.ss*
+cleanup
