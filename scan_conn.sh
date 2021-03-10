@@ -13,8 +13,7 @@ exit 1
 else
    PROCESS=$1
 fi
-if ! command -v ss >> /dev/null 2>&1 || 
-   ! command -v whois >> /dev/null 2>&1
+if ! command -v ss >> /dev/null 2>&1 || ! command -v whois >> /dev/null 2>&1
 then
    echo "Firstly, there is need to install 'ss' and 'whois' on your PC"
    echo -n "Do you want to install these tools? [Y/n] "
@@ -49,7 +48,8 @@ do
    [ -n "$res" ] && echo "$res" && echo "$res" >> $TMPPATH.org
    [ -z "$res" ] && echo "(!) Cannot find Organization of IP: $IP"
 done
-if [ -f $TMPPATH.org ]; then
+if [ -f $TMPPATH.org ]
+then
    echo "_________________________________________________________"
    echo "Connections per Org: "
    cat $TMPPATH.org | sort | uniq -c
